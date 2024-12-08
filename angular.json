@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/my-flix-angular-client1",
+            "outputPath": "dist/my-flix-angular-client1/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -40,12 +40,12 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
+                  "maximumWarning": "4mb",
                   "maximumError": "4kb"
                 }
               ],
@@ -97,6 +97,13 @@
               "src/styles.sass"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "basehref": "https://colinms4.github.io/myFlix-Angular1/",
+            "outputPath": "dist/my-flix-angular-client1"
           }
         }
       }

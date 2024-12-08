@@ -14,12 +14,36 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
 import { UserRegistrationService } from './fetch-api-data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
+import { MovieCardComponent } from './movie-card/movie-card.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { Routes, RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MovieGenreComponent } from './movie-genre/movie-genre.component';
+import { DirectorInfoComponent } from './director-info/director-info.component';
+import { SynopsisInfoComponent } from './synopsis-info/synopsis-info.component';
+
+
+
+const appRoutes: Routes = [
+  { path: 'welcome', component: WelcomePageComponent },
+  { path: 'movies', component: MovieCardComponent },
+  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
+];
+
 
 @NgModule({
   declarations: [
     UserRegistrationFormComponent,
     AppComponent,
-    UserLoginFormComponent
+    UserLoginFormComponent,
+    MovieCardComponent,
+    WelcomePageComponent,
+    UserProfileComponent,
+    MovieGenreComponent,
+    DirectorInfoComponent,
+    SynopsisInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +56,10 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
     MatDialogModule,
     MatSnackBarModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatToolbarModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     UserRegistrationService

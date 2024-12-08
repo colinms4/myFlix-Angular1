@@ -1,0 +1,13 @@
+.movie-image {
+    display: flex;
+    align-content: center;
+    height: 325px;
+    width: 325px;
+}
+
+.movie-grid {
+    display: flex 1 1 auto;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px;
+}

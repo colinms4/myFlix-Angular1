@@ -8,7 +8,7 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class UserRegistrationService {
   // api url
-  apiUrl = 'https://myflixdb-movies123-5a87d32f5f6f.herokuapp.com/';
+  apiUrl = 'https://myflixdb-movies123-5a87d32f5f6f.herokuapp.com';
 
   constructor(private http: HttpClient) {
   }
@@ -33,7 +33,7 @@ export class UserRegistrationService {
 
   public getAllMovies(): Observable<any> {
     const token = this.getToken();
-    return this.http.get(this.apiUrl + 'movies', {
+    return this.http.get(this.apiUrl + '/movies', {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
@@ -67,9 +67,9 @@ export class UserRegistrationService {
     );
   }
 
-  public getGenre(name: string): Observable<any> {
+  public getGenre(genreName: string): Observable<any> {
     const token = this.getToken();
-    return this.http.get(`${this.apiUrl}/movies/genre/${name}`, {
+    return this.http.get(`${this.apiUrl}/movies/genre/${genreName}`, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
@@ -105,7 +105,7 @@ export class UserRegistrationService {
 
   public addMovieToFavorites(Username: string, movieId: string): Observable<any> {
     const token = this.getToken();
-    return this.http.put(`${this.apiUrl}/users/${Username}/movies/${movieId}`, {}, {
+    return this.http.post(`${this.apiUrl}/users/${Username}/movies/${movieId}`, {}, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
@@ -117,7 +117,7 @@ export class UserRegistrationService {
 
   public editUser(userDetails: any): Observable<any> {
     const token = this.getToken();
-    return this.http.put(`${this.apiUrl}/users/${userDetails.id}`, userDetails, {
+    return this.http.put(`${this.apiUrl}/users/${userDetails.Username}`, userDetails, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
