@@ -15,10 +15,17 @@ export class SynopsisInfoComponent {
     @Inject(MAT_DIALOG_DATA) public data: { movie: any }
   ) { }
 
+  /**
+   * closes the dialog 
+   */
   closeDialog(): void {
     this.dialogRef.close();
   }
 
+  /**
+   * gets data on a singular title
+   * @param Title gets more data on the specific title
+   */
   getMovies(Title: any): void {
     this.fetchApiData.getMovieByTitle(Title).subscribe((resp: any) => {
       this.movie = resp;

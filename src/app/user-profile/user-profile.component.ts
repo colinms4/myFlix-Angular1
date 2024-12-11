@@ -19,6 +19,9 @@ export class UserProfileComponent {
     public router: Router
   ) { }
 
+  /**
+   * Initializes the component and checks to see if data is being received 
+   */
   ngOnInit(): void {
     // Parse the stored user and extract just the username
     const storedUser = localStorage.getItem('user');
@@ -32,19 +35,33 @@ export class UserProfileComponent {
     this.getUserProfile();
   }
 
+  /**
+   * navigates to profile
+   */
   profile(): void {
     this.router.navigate(["profile"])
   }
 
+  /**
+   * logout function
+   */
   logout(): void {
     this.router.navigate(["welcome"]);
     localStorage.removeItem("user");
   }
 
+  /**
+   * navigates to home screen "movies"
+   */
   home(): void {
     this.router.navigate(["movies"]);
   }
 
+  /**
+   * Updates a user's information
+   * @param req.body
+   * @returns {string} Profile updated successfully 
+   */
   updateUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe((res: any) => {
       alert('Profile updated successfully!');
@@ -55,6 +72,9 @@ export class UserProfileComponent {
     })
   }
 
+  /**
+   * gets the user's profile data 
+   */
   getUserProfile(): void {
     if (this.Username) {
       this.fetchApiData.getUser(this.Username).subscribe({
@@ -75,6 +95,9 @@ export class UserProfileComponent {
     }
   }
 
+  /**
+   * get's a users favorite movies 
+   */
   getFavoriteMovieTitles(): void {
     this.fetchApiData.getAllMovies().subscribe({
       next: (movies: any[]) => {
@@ -94,6 +117,10 @@ export class UserProfileComponent {
     });
   }
 
+  /**
+   * delets a user's favorite movie from favorite movies
+   * @param movieId movieID used to delete from user's FavoriteMovies
+   */
   deleteFavoriteMovie(movieId: string): void {
     // Use the current username from the component
     const Username = this.Username;

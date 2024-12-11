@@ -21,12 +21,18 @@ export class WelcomePageComponent {
     });
   }
 
+  /**
+   * Opens a dialog for the login component
+   */
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       width: '280px'
     });
   }
 
+  /**
+   * Opens a dialog for the movie card component 
+   */
   openMoviesDialog(): void {
     this.dialog.open(MovieCardComponent, {
       width: '700px'

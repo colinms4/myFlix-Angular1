@@ -17,6 +17,9 @@ export class MovieGenreComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
+  /**
+   * Initialize component and check for data
+   */
   ngOnInit(): void {
     console.log('Received dialog data:', this.data);
 
@@ -29,6 +32,10 @@ export class MovieGenreComponent implements OnInit {
     }
   }
 
+  /**
+   * Fetches the Genre info based on a genre name
+   * @param genreName 
+   */
   getGenreInfo(genreName: string): void {
     this.fetchApiData.getGenre(genreName).subscribe({
       next: (res) => {
@@ -40,6 +47,9 @@ export class MovieGenreComponent implements OnInit {
     });
   }
 
+  /**
+   * closes the dialog 
+   */
   closeDialog(): void {
     this.dialogRef.close();
   }

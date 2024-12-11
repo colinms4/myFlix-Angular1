@@ -22,19 +22,32 @@ export class MovieCardComponent implements OnInit {
     public snackBar: MatSnackBar,
     public dialog: MatDialog) { }
 
+  /**
+   * initialize the component 
+   */
   ngOnInit(): void {
     this.getMovies();
   }
 
+  /**
+   * Logs the user out and removes from local storage and navigates back to the welcome page
+   */
   logout(): void {
     this.router.navigate(["welcome"]);
     localStorage.removeItem("user");
   }
 
+  /**
+   * Component that navigates to a user's profile
+   */
   profile(): void {
     this.router.navigate(["profile"])
   }
 
+  /**
+   * Component adds a movie to a user's favorites 
+   * @param movieId MovieId is used to add a movie to a user's favorites 
+   */
   addToFavorites(movieId: string): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const username = user.Username;
@@ -58,6 +71,9 @@ export class MovieCardComponent implements OnInit {
     }
   }
 
+  /**
+   * Gets all the movies in the database
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -66,6 +82,10 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens a dialog for the synopsis component displaying more movie details
+   * @param movie 
+   */
   openSynopsisDialog(movie: any): void {
     this.dialog.open(SynopsisInfoComponent, {
       data: { movie },
@@ -73,6 +93,10 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  /**
+   * Opens a dialog for the Genre component displaying Genre data 
+   * @param movie 
+   */
   openGenreInfoDialog(movie: any): void {
     this.dialog.open(MovieGenreComponent, {
       data: { Genre: movie.Genre },
@@ -80,6 +104,10 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  /**
+   * Opens a dialog for the Director component displaying more Director data 
+   * @param movie 
+   */
   openDirectorInfoDialong(movie: any): void {
     this.dialog.open(DirectorInfoComponent, {
       data: { directorName: movie.Director },

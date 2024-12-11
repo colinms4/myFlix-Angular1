@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 })
 export class UserLoginFormComponent implements OnInit {
 
+  /**
+   * User's inputs to login
+   */
   @Input() userData = { Username: '', Password: '' };
 
   constructor(
@@ -22,7 +25,11 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * allows a user to login 
+   * @param req.body 
+   * @returns {string} user logged in
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData.Username, this.userData.Password).subscribe((result) => {
       localStorage.setItem("user", JSON.stringify(result.user));
